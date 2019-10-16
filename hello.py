@@ -9,7 +9,7 @@
 
 
 from owslib.wfs import WebFeatureService
-wfs = WebFeatureService("http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?request=DescribeFeatureType&service=WFS&version=1.2.0", version='1.2.0')
+wfs = WebFeatureService("http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?request=GetFeature&service=WFS&version=1.2.0&typeName=geosolutions:WorldCountries", version='1.2.0')
 print(wfs.identification.title)
 print(wfs.identification.type)
 print(wfs.identification.version)

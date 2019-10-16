@@ -1,7 +1,7 @@
 import 'ol/ol.css';
 import {Map, View} from 'ol';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
-import GeoJSON from 'ol/format/GeoJSON';
+import WFS from 'ol/format/wfs';
 import {OSM, TileWMS } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
 import {Stroke, Style} from 'ol/style';
@@ -9,15 +9,31 @@ import {Stroke, Style} from 'ol/style';
 
 
 var vectorSource = new VectorSource({
-  format: new GeoJSON(),
-  url: function(extent) {
-    return 'http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?' +
-    
-    // return 'http://geodata.gov.gr/geoserver/ows?
-    'service=WFS&request=GetFeature&version=1.1.0&'+
-    'outputFormat=json&srsName=EPSG:4326&typeNames=geodata.gov.gr:3fbc1aea-3bdd-4bbc-811c-e11758213a8d&count=100';
-  },
- //strategy: bboxStrategy
+  format: new WFS(),
+  url:'http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?' +
+    'service=WFS&request=GetFeature&version=1.2.0&'+
+    'typeName=Οικοδομικά_Τετράγωνα&maxFeatures=100',
+  // loader: function(extent) {
+  //   var url= 'http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?' +
+  //   'service=WFS&request=GetFeature&version=1.2.0&'+
+  //   'typeName=Οικοδομικά_Τετράγωνα&maxFeatures=100';
+  //   var xhr = new XMLHttpRequest();
+  //   xhr.open('GET', url);
+  //   var onError = function() {
+  //     vectorSource.removeLoadedExtent(extent);
+  //   }
+  //   xhr.onerror = onError;
+  //    xhr.onload = function() {
+  //      if (xhr.status == 200) {
+  //        vectorSource.addFeatures(
+  //            vectorSource.getFormat().readFeatures(xhr.responseText));
+  //      } else {
+  //        onError();
+  //      }
+  //    }
+  //    xhr.send();
+  // },
+ //strategy: bbox
 });
 var vector = new VectorLayer({
   source: vectorSource,
@@ -49,12 +65,12 @@ const map = new Map({
     new TileLayer({
       source: new OSM()
     }),
-    tile2
-    //vector
+    //tile2
+    vector
   ],
   view: new View({
     center: [0, 0],
     zoom: 0
   })
 });
-sync(map);
+map;
