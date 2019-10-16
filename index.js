@@ -1,6 +1,7 @@
 import 'ol/ol.css';
 import {Map, View} from 'ol';
 import {Tile as TileLayer, Vector as VectorLayer} from 'ol/layer';
+import {bbox as bboxStrategy} from 'ol/loadingstrategy';
 import GeoJSON from 'ol/format/GeoJSON';
 import {OSM, TileWMS } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
@@ -12,12 +13,13 @@ var vectorSource = new VectorSource({
   format: new GeoJSON(),
   url: function(extent) {
     return 'http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?' +
-    
     // return 'http://geodata.gov.gr/geoserver/ows?
-    'service=WFS&request=GetFeature&version=1.1.0&'+
-    'outputFormat=json&srsName=EPSG:4326&typeNames=geodata.gov.gr:3fbc1aea-3bdd-4bbc-811c-e11758213a8d&count=100';
+    'service=WFS&request=GetFeature&version=1.2.0&'+
+    '&typenames=Οικοδομικά_Τετράγωνα&maxFeatures=100' +
+    '&srsname=EPSG:3857&' +
+    'bbox=' + extent.join(',') + ',EPSG:3857';;
   },
- //strategy: bboxStrategy
+ strategy: bboxStrategy
 });
 var vector = new VectorLayer({
   source: vectorSource,
@@ -49,12 +51,12 @@ const map = new Map({
     new TileLayer({
       source: new OSM()
     }),
-    tile2
-    //vector
+   // tile2
+    vector
   ],
   view: new View({
     center: [0, 0],
     zoom: 0
   })
 });
-sync(map);
+map;
