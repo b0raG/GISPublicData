@@ -10,29 +10,40 @@ import {Stroke, Style} from 'ol/style';
 
 var vectorSource = new VectorSource({
   format: new WFS(),
-  url:'http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?' +
-    'service=WFS&request=GetFeature&version=1.2.0&'+
-    'typeName=Οικοδομικά_Τετράγωνα&maxFeatures=100',
-  // loader: function(extent) {
-  //   var url= 'http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?' +
+  // url:'http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?' +
   //   'service=WFS&request=GetFeature&version=1.2.0&'+
-  //   'typeName=Οικοδομικά_Τετράγωνα&maxFeatures=100';
-  //   var xhr = new XMLHttpRequest();
-  //   xhr.open('GET', url);
-  //   var onError = function() {
-  //     vectorSource.removeLoadedExtent(extent);
-  //   }
-  //   xhr.onerror = onError;
-  //    xhr.onload = function() {
-  //      if (xhr.status == 200) {
-  //        vectorSource.addFeatures(
-  //            vectorSource.getFormat().readFeatures(xhr.responseText));
-  //      } else {
-  //        onError();
-  //      }
-  //    }
-  //    xhr.send();
-  // },
+  //   'typeName=Οικοδομικά_Τετράγωνα&maxFeatures=100',
+  loader: function(extent) {
+    var url= 'http://gis.epoleodomia.gov.gr/arcgis/services/Rimotomika_Sxedia_Poleod_Meletes/OikodomikaTetragona/MapServer/WFSServer?' +
+    'service=WFS&request=GetFeature&version=1.2.0&'+
+    'typeName=Οικοδομικά_Τετράγωνα&maxFeatures=100';
+    fetch(url)
+    .then(response => response.text())
+    .then(text => {
+      vectorSource.addFeatures(
+        vectorSource.getFormat().readFeatures(text, {
+          dataProjection: 'urn:ogc:def:crs:EPSG:6.9:2100',
+          featureProjection: 'EPSG:3857'
+        })
+      )
+    })
+    // var xhr = new XMLHttpRequest();
+    // xhr.open('GET', url);
+    // var onError = function() {
+    //   vectorSource.removeLoadedExtent(extent);
+    // }
+    // xhr.onerror = onError;
+    //  xhr.onload = function() {
+    //    if (xhr.status == 200) {
+
+    //      vectorSource.addFeatures(
+    //          vectorSource.readFeatures(xhr.responseText));
+    //    } else {
+    //      onError();
+    //    }
+    //  }
+    //  xhr.send();
+  },
  //strategy: bbox
 });
 var vector = new VectorLayer({
