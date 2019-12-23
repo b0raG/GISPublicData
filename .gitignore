@@ -16,6 +16,6 @@ var/
 *.egg
 .cache
 emv/
-env/
+.venv/*
 .vscode/
 # Installer logs033160061900121116198211800080
