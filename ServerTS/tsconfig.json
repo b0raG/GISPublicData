@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "target": "esnext",
+        "module": "commonjs",
+        "esModuleInterop": true,
+        "moduleResolution": "node",
+        "outDir": "dist",
+        "sourceMap": true
+    },
+    "lib": ["es2015"],
+    // "files": [
+    //   "./node_modules/@types/mocha/index.d.ts",
+    //   "./node_modules/@types/node/index.d.ts"
+    // ],
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules", ".vscode"]
+}

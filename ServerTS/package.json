@@ -1,0 +1,59 @@
+{
+  "name": "typescripttest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/App.ts",
+  "scripts": {
+    "start": "tsc && node dist/App.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "webpack": "rd /s /q dist && webpack --mode development",
+    "webpack-dev": "rd /s /q dist && webpack --mode development --watch",
+    "startwebpack": "node dist/bundle.js",
+    "debug": "node --inspect=5858 -r ts-node/register ./src/app.ts",
+    "start:watch": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [
+      "**/*.test.ts",
+      "**/*.spec.ts",
+      ".git",
+      "node_modules"
+    ],
+    "watch": [
+      "src"
+    ],
+    "exec": "npm run debug",
+    "ext": "ts"
+  },
+  "dependencies": {
+    "@hapi/joi": "^16.1.8",
+    "express": "^4.17.1",
+    "express-joi-validation": "^4.0.3",
+    "express-validation": "^1.0.2",
+    "jsonwebtoken": "^8.5.1",
+    "mime": "^2.4.4",
+    "mongoose": "^5.6.12",
+    "node-static": "^0.7.11"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.1",
+    "@types/hapi__joi": "^16.0.4",
+    "@types/jsonwebtoken": "^8.3.3",
+    "@types/mongoose": "^5.5.17",
+    "@typescript-eslint/eslint-plugin": "^2.0.0",
+    "@typescript-eslint/parser": "^2.0.0",
+    "eslint": "^6.3.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "nodemon": "^1.19.2",
+    "prettier": "^1.18.2",
+    "ts-loader": "^6.0.4",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.19.0",
+    "typescript": "^3.6.2",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}

@@ -11,7 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
     "nodemon": "^1.19.4",
     "ol": "^6.0.1",
     "ol-hashed": "^2.0.0"
