@@ -18,7 +18,7 @@ router.use(
     },
 );
 
-router.get('/data', (req, res) => {
+router.get('/data/KML_Samples.kml', (req, res) => {
     let ext = mime.getType('kml');
     res.sendFile(path.join(__dirname,'../') + 'public/KML_Samples.kml', {headers: {'Content-Type': ext}});
 });
