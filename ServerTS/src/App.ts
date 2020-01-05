@@ -7,6 +7,7 @@ import mongoose from 'mongoose';
 var nodestatic = require('node-static');
 var path = require('path');
 const mime = require('mime');
+var cors = require('cors');
 
 class App {
     public app;
@@ -14,13 +15,10 @@ class App {
     constructor() {
         // Set up the express app
         this.app = express();
+        this.app.use(cors());
+        this.app.options('*', cors());
         this.app.use(bodyParser.json());
         this.app.use(bodyParser.urlencoded({ extended: false }));
-        this.app.use(function (req, res, next) {
-            res.header("Access-Control-Allow-Origin", "*");
-            res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            next();
-          });
     //    this.connectToDB();
         this.mountRoutes();
        // this.app.use(routes);
