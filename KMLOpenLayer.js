@@ -8,44 +8,57 @@ import WFS from 'ol/format/wfs';
 import { OSM, TileWMS, BingMaps } from 'ol/source';
 import VectorSource from 'ol/source/Vector';
 import { Stroke, Style } from 'ol/style';
+import {transform} from 'ol/proj';
+import {toStringXY, from} from 'ol/coordinate';
 
 
-var vector = new VectorLayer({
+var vector1 = new VectorLayer({
   source: new VectorSource({
-    // loader: function(extent, resolution, projection) {
-    //   var url = 'http://localhost:3000/data/KML_Samples.kml';
-    //   var xhr = new XMLHttpRequest();
-    //   xhr.open('GET', url, true);
-
-
-    //   xhr.onload = function() {
-    //     if (xhr.status == 200) {
-    //       vectorSource.addFeatures(
-    //           vectorSource.getFormat().readFeatures(xhr.responseText));
-    //     } else {
-    //       onError();
-    //     }
-    //   }
-    //   xhr.send();
-    // },
     url: 'http://localhost:5000/data/KML_Samples.kml',
     format: new KML()
   })
 });
 
-var base = new TileLayer({
-  source: new BingMaps({
-    imagerySet: 'Aerial',
-    key: 'AhIHUfYE1S5tiIOgYs6Nw4TBw9PIv-f7Kzq5n77t8UgXMFoiqVGWOEhn2S9knUMD'
+var vector2 = new VectorLayer({
+  source: new VectorSource({
+    url: 'http://localhost:5000/data/query.kml',
+    format: new KML()
   })
+});
+
+
+
+
+function createFeatures() {
+  var features = [];
+  for (var i = 0; i < kml.length; i++) {
+    features.push(new OpenLayers.Feature.Vector(
+      new OpenLayers.Protocol.HTTP({
+        url: 'kml/file' + i + '.kml',
+        format: new OpenLayers.Format.KML()
+      }
+      )));
+  }
+  return features;
+}
+
+var base = new TileLayer({
+  source: new OSM()
+  // source: new BingMaps({
+  //   imagerySet: 'Aerial',
+  //   key: 'AhIHUfYE1S5tiIOgYs6Nw4TBw9PIv-f7Kzq5n77t8UgXMFoiqVGWOEhn2S9knUMD'
+  // })
 });
 
 const map = new Map({
   target: 'map',
-  layers: [base, vector],
+  layers: [base, vector2, vector1],
   view: new View({
-    center: [0, 0],
-    zoom: 0
+center:transform([33.0688, 35.0862], 'EPSG:4326', 'EPSG:3857'),
+   // cnter: toStringXY([35.0862, 33.0688]),// 'EPSG:4326', ),
+    //'35.0862', '33.0688'
+    //projection: 'EPSG:3857',
+    zoom: 9.5,
   })
 });
 var getDisplayFeatureInfo = function (pixel) {

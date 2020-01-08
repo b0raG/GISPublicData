@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kml xmlns="http://www.opengis.net/kml/2.2" xmlns:gx="http://www.google.com/kml/ext/2.2" xmlns:kml="http://www.opengis.net/kml/2.2" xmlns:atom="http://www.w3.org/2005/Atom">
+<Document id="DLS_Parcels" xsi:schemaLocation="http://www.opengis.net/kml/2.2 http://schemas.opengis.net/kml/2.2.0/ogckml22.xsd http://www.google.com/kml/ext/2.2 http://code.google.com/apis/kml/schema/kml22gx.xsd">
+	<name>256</name>
+	<open>1</open>
+	<snippet></snippet>
+	<StyleMap id="PolyStyle001">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#PolyStyle00</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#PolyStyle000</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="s_ylw-pushpin_hl">
+		<IconStyle>
+			<scale>1.3</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<Style id="PolyStyle000">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000e6</color>
+			<width>3</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80faeb00</color>
+		</PolyStyle>
+	</Style>
+	<Style id="s_ylw-pushpin">
+		<IconStyle>
+			<scale>1.1</scale>
+			<Icon>
+				<href>http://maps.google.com/mapfiles/kml/pushpin/ylw-pushpin.png</href>
+			</Icon>
+			<hotSpot x="20" y="2" xunits="pixels" yunits="pixels"/>
+		</IconStyle>
+	</Style>
+	<StyleMap id="m_ylw-pushpin">
+		<Pair>
+			<key>normal</key>
+			<styleUrl>#s_ylw-pushpin</styleUrl>
+		</Pair>
+		<Pair>
+			<key>highlight</key>
+			<styleUrl>#s_ylw-pushpin_hl</styleUrl>
+		</Pair>
+	</StyleMap>
+	<Style id="PolyStyle00">
+		<LabelStyle>
+			<color>00000000</color>
+			<scale>0</scale>
+		</LabelStyle>
+		<LineStyle>
+			<color>800000e6</color>
+			<width>3</width>
+		</LineStyle>
+		<PolyStyle>
+			<color>80faeb00</color>
+		</PolyStyle>
+	</Style>
+	<Folder id="FeatureLayer0">
+		<name>DLS_Parcels</name>
+		<snippet></snippet>
+		<Placemark id="ID_00000">
+			<name>256</name>
+			<snippet></snippet>
+			<description><![CDATA[<html><body><table border="1"><tr><th>Field Name</th><th>Field Value</th></tr><tr><td>OBJECTID</td><td>1490482</td></tr><tr><td>SBPI_ID_NO</td><td>10386116</td></tr><tr><td>District Code</td><td>3</td></tr><tr><td>Municipality/Community Code</td><td>100</td></tr><tr><td>Quarter Code</td><td>0</td></tr><tr><td>Block Code</td><td>10</td></tr><tr><td>Parcel Number</td><td>256</td></tr><tr><td>Sheet</td><td>0</td></tr><tr><td>Plan</td><td>2-288-373</td></tr><tr><td>SRC_SL_CODE</td><td>7</td></tr><tr><td>SOURCE</td><td>SDB</td></tr><tr><td>Parcel Area</td><td>4617</td></tr><tr><td>CadastralPlan</td><td>Null</td></tr></table></body></html>]]></description>
+			<styleUrl>#PolyStyle001</styleUrl>
+			<Polygon>
+				<outerBoundaryIs>
+					<LinearRing>
+						<coordinates>
+							33.97414638205015,34.99018067199531,0 33.97379623428853,34.99024792204455,0 33.97382687927908,34.99042867153562,0 33.97385845809553,34.99061491737519,0 33.97387533182138,34.99071445891286,0 33.97480086857204,34.99071366305435,0 33.97454070309836,34.99010966902937,0 33.97429711463219,34.99017295529183,0 33.97414638205015,34.99018067199531,0 33.97414638205015,34.99018067199531,0 
+						</coordinates>
+					</LinearRing>
+				</outerBoundaryIs>
+			</Polygon>
+		</Placemark>
+	</Folder>
+	<Placemark>
+		<name>256</name>
+		<LookAt>
+			<longitude>33.97443645230201</longitude>
+			<latitude>34.99125267205757</latitude>
+			<altitude>0</altitude>
+			<heading>7.932892678921698e-05</heading>
+			<tilt>45.0043874394777</tilt>
+			<range>1706.543465631627</range>
+			<gx:altitudeMode>relativeToSeaFloor</gx:altitudeMode>
+		</LookAt>
+		<styleUrl>#m_ylw-pushpin</styleUrl>
+		<Point>
+			<gx:drawOrder>1</gx:drawOrder>
+			<coordinates>33.97432219809212,34.9904219481912,0</coordinates>
+		</Point>
+	</Placemark>
+</Document>
+</kml>

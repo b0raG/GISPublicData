@@ -1,6 +1,7 @@
 import express from 'express';
 let router = express.Router();
 var path = require('path');
+var fs = require('fs');
 const mime = require('mime');
 var cors = require('cors')
 
@@ -18,10 +19,20 @@ router.use(
     },
 );
 
-router.get('/data/KML_Samples.kml', cors(), (req, res) => {
-    let ext = mime.getType('kml');
-    res.sendFile(path.join(__dirname,'../') + 'public/KML_Samples.kml', {headers: {'Content-Type': ext}});
+router.get('/data/:id', cors(), (req, res,next) => {
+    var id = req.params.id;
+    var fileRoute = path.join(__dirname,'../') + `public/${id}`;
+    if (fs.existsSync(fileRoute)){
+        let ext = mime.getType('kml');
+        console.log(`file ${id} sent`);
+        res.sendFile(fileRoute, {headers: {'Content-Type': ext}});
+    }
+    else{
+        next();
+    }
 });
+
+
 router.all('*', (req, res) => {
     res.status(404).send({ msg: 'not found' });
 });
